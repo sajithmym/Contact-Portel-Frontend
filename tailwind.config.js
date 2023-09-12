@@ -13,9 +13,14 @@ export default {
         'right': '0 80% 80% 0', 
       },
       backgroundImage: {
-        'custom-bg': "url('/background.jpg')", 
+        'custom-bg': "url('/background.jpg')",
       },
-      
+      height : {
+        'custom' : '125%'
+      },
+      colors : {
+        'cus' : 'rgb(8, 63, 70)',
+      }
     },
   },
   plugins: [],
