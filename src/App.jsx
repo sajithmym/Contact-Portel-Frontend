@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className="main">
+    <div className="m-0 p-0 h-screen w-screen bg-white">
       <BrowserRouter>
       <Routes>
         <Route path='/'>
