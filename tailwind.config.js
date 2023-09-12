@@ -11,6 +11,7 @@ export default {
       },
       borderRadius: {
         'right': '0 80% 80% 0', 
+        'cust' : '0 30% 0 30%'
       },
       backgroundImage: {
         'custom-bg': "url('/background.jpg')",
