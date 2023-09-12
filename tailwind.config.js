@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom': 'rgb(8, 63, 70)', 
+      },
+      borderRadius: {
+        'right': '0 80% 80% 0', 
+      },
+      backgroundImage: {
+        'custom-bg': "url('/background.jpg')", 
+      },
+      
+    },
   },
   plugins: [],
 }
