@@ -1,5 +1,7 @@
 export default function Welcome() {
   return (
-    <div>Welcome</div>
+    <div className="">
+    
+    </div>
   )
 }
