@@ -1,5 +1,5 @@
 // import {BrowserRouter,Routes,Route} from "react-router-dom";
-import  Welcome  from "./pages/welcome";
+import Welcome from "./pages/welcome";
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="main">
       <Welcome/>
+      
     </div>
   )
 }
