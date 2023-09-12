@@ -13,9 +13,7 @@ export default function Welcome() {
         <div className="text-white ml-28 text-xl font-bold">Contacts</div>
         <div className="text-white ml-28 mt-2 text-xl font-normal"> Portal </div>
       </div>
-
       
-
       </div>
     </div>
 
