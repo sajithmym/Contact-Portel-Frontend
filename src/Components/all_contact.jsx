@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import Logout from './Logout';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function AllContact() {
   const navigate_var = useNavigate()
   const array = JSON.parse(localStorage.getItem("twc-test-array"));
 
+  const [code, setCode] = useState(<div></div>)
+
   const go_Add_page = () => {
-    navigate_var('/contacts/new')
+    navigate_var('/Add')
   }
 
   useEffect(() => {
@@ -15,7 +18,50 @@ export default function AllContact() {
       navigate_var('/login');
     }
   }, []);
-  
+
+  let delete_reecord = (id) => {
+    //-----------------------------------------------
+    const answer = confirm("Are you sure you want to do that?");
+
+    if (answer) {
+      axios.post(`http://127.0.0.1:8010/delele`, {
+        id: id
+      })
+        .then(() => {
+          window.location.href = ''
+        })
+    }
+  }
+
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8010/get/${array[1]}`).then((res) => {
+
+      let data = res.data.rec;
+
+      if (data.length === 0) {
+        setCode(
+          <div id="nodata">
+            No Record Found
+          </div>)
+      } else {
+        const allRecords = data.map((record, number) => (
+          <tr className='mt-5' key={number}>
+            {(record.gender === "Female") && <td className="p-2"><box-icon name='female-sign'></box-icon></td>}
+            {(record.gender === "Male") && <td className="p-2"><box-icon name='male-sign'></box-icon></td>}
+            <td className="p-2">{record.name}</td>
+            <td className="p-2">{record.gender}</td>
+            <td className="p-2">{record.email}</td>
+            <td className="p-2">{record.mobile}</td>
+            <td className="p-2 hover:cursor-pointer"><box-icon type='solid' name='pencil'></box-icon></td>
+            <td className="p-2 hover:cursor-pointer" onClick={() => delete_reecord(`${record._id}`)}><box-icon type='solid' name='trash'></box-icon></td>
+          </tr>
+        ));
+        setCode(allRecords);
+      }
+    }) 
+
+  }, [])
+
   return (
     <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
       <div className="h-screen w-screen bg-custom rounded-cust">
@@ -50,42 +96,15 @@ export default function AllContact() {
               </tr>
             </thead>
             <tbody>
-              <tr className='mt-5'>
-                <td className="p-2"><box-icon name='male-sign'></box-icon></td>
-                <td className="p-2">John Doe</td>
-                <td className="p-2">Male</td>
-                <td className="p-2">johndoe@example.com</td>
-                <td className="p-2">123-456-7890</td>
-                <td className="p-2"><box-icon type='solid' name='pencil'></box-icon></td>
-                <td className="p-2"><box-icon name='trash'></box-icon></td>
-              </tr>
 
-              <tr className='mt-5'>
-                <td className="p-2"><box-icon name='female-sign'></box-icon></td>
-                <td className="p-2">Jane Smith</td>
-                <td className="p-2">Female</td>
-                <td className="p-2">janesmith@example.com</td>
-                <td className="p-2">987-654-3210</td>
-                <td className="p-2"><box-icon type='solid' name='pencil'></box-icon></td>
-                <td className="p-2"><box-icon name='trash'></box-icon></td>
-              </tr>
-              
-              <tr className='mt-5'>
-                <td className="p-2"><box-icon name='female-sign'></box-icon></td>
-                <td className="p-2">Jane Smith</td>
-                <td className="p-2">Female</td>
-                <td className="p-2">janesmith@example.com</td>
-                <td className="p-2">987-654-3210</td>
-                <td className="p-2"><box-icon type='solid' name='pencil'></box-icon></td>
-                <td className="p-2"><box-icon name='trash'></box-icon></td>
-              </tr>
+              {code}
 
             </tbody>
           </table>
 
         </div>
 
-        <Logout/>
+        <Logout />
 
       </div>
     </div>

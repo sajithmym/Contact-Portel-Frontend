@@ -4,8 +4,12 @@ export default function Logout() {
     const MovePage = useNavigate()
 
     const signout = () => {
-        localStorage.clear()
-        MovePage('/login')
+        let userResponse = window.confirm("Do you want to Logout?");
+
+        if (userResponse) {
+            localStorage.clear()
+            MovePage('/login')
+        }
     }
     return (
         <div className="flex justify-end mt-16">

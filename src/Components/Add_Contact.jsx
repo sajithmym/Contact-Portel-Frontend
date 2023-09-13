@@ -3,7 +3,7 @@ import Logout from "./Logout"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Initial_add_contact() {
+export default function Add_contact() {
   const move = useNavigate()
   const array = JSON.parse(localStorage.getItem("twc-test-array"));
 
@@ -101,7 +101,7 @@ export default function Initial_add_contact() {
                   <input type="radio" name="gender" checked={gender === "Female"} onChange={handleGenderChange} value="Female" className="ml-10 " /> Female
                 </div></div>
 
-              <button className="ml-24 mt-8 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add your first contact</button>
+              <button className="ml-24 mt-8 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add contact</button>
             </form>
 
           </div>

@@ -6,6 +6,7 @@ import Register from "./Components/register"
 import Login from "./Components/login"
 import Initial_add_contact from "./Components/initial_add"
 import All_contact from "./Components/all_contact";
+import Add_contact from "./Components/Add_Contact";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='/contacts/new' element={<Initial_add_contact />} />
           <Route path='/contacts' element={<All_contact />} />
           <Route path='/welcome' element={<Welcome />} />
+          <Route path='/Add' element={<Add_contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
