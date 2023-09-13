@@ -44,8 +44,8 @@ export default function Initial_add_contact() {
             </form>
             
           </div>
-          <div class="flex justify-end mt-10">
-              <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i class='bx bx-log-out-circle'></i> Logout </button>
+          <div className="flex justify-end mt-10">
+              <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i className='bx bx-log-out-circle'></i> Logout </button>
             </div>
         </div>
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AllContact() {
@@ -76,8 +75,8 @@ export default function AllContact() {
 
         </div>
 
-        <div class="flex justify-end mt-16">
-          <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i class='bx bx-log-out-circle'></i> Logout </button>
+        <div className="flex justify-end mt-16">
+          <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i className='bx bx-log-out-circle'></i> Logout </button>
         </div>
 
       </div>
