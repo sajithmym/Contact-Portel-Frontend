@@ -47,14 +47,14 @@ export default function Register() {
             </div>
             <div class="flex items-center justify-start">
               <button
-                class="mt-5 border border-white  bg-inherit hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
+                class="mt-5 border border-white bg-inherit hover:bg-black text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 register
               </button>
             </div>
             <br/> <br/>
-            <a className="underline text-white text-2xl font-normal cursor-pointer hover:text-blue-200" onClick={() => go_login()}> &gt; Back to login</a>
+            <a className="underline text-white text-2xl font-normal cursor-pointer hover:text-black hover:bg-white hover:px-8 py-2 rounded-full" onClick={() => go_login()}> &gt; Back to login</a>
           </form>
         </div>
       </div>

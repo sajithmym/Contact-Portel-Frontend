@@ -39,14 +39,14 @@ export default function Login() {
             </div>
             <div class="flex items-center justify-start">
               <button
-                class="mt-5 border border-white  bg-inherit hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
+                class="mt-5 border border-white  bg-inherit hover:bg-black text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 login
               </button>
 
               <div className="mt-4 pl-4 text-white text-2xl font-normal"> or
-              </div>  <a className="underline mt-4 pl-4 text-white text-2xl font-normal cursor-pointer hover:text-blue-200" onClick={() => go_Register()}>Click Here to Register</a>
+              </div>  <a className="underline mt-4 pl-4 text-white text-2xl font-normal cursor-pointer hover:text-black hover:bg-white hover:px-8 py-2 rounded-full hover:ml-4" onClick={() => go_Register()}>Click Here to Register</a>
             </div>
           </form>
 
