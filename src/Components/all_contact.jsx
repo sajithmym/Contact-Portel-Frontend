@@ -1,12 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import Logout from './Logout';
+import { useEffect } from 'react';
 
 export default function AllContact() {
   const navigate_var = useNavigate()
+  const array = JSON.parse(localStorage.getItem("twc-test-array"));
 
   const go_Add_page = () => {
     navigate_var('/contacts/new')
   }
+
+  useEffect(() => {
+    if (!array) {
+      navigate_var('/login');
+    }
+  }, []);
+  
   return (
     <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
       <div className="h-screen w-screen bg-custom rounded-cust">

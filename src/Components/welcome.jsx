@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Logout from "./Logout"
+import { useEffect } from "react";
 
 export default function Welcome() {
   const navigate_var = useNavigate()
@@ -9,9 +10,16 @@ export default function Welcome() {
     navigate_var('/contacts/new')
   }
 
-  if (array)
-      if (!(array[0] === 'user'))
-          navigator('/login')
+  if (!array) {
+    navigate_var('/login')
+  }
+
+  useEffect(() => {
+    if (!array) {
+      navigate_var('/login');
+    }
+  }, []);
+
   return (
 
     <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
@@ -35,8 +43,8 @@ export default function Welcome() {
 
         <button onClick={() => go_Add_page()} className="ml-48 mt-16 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add your first contact</button>
         <br />
-        <Logout/>
-        </div>
+        <Logout />
+      </div>
     </div >
   )
 }

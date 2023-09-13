@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom"
 import Logout from "./Logout"
+import { useEffect } from "react";
 
 export default function Initial_add_contact() {
   const move = useNavigate()
+  const array = JSON.parse(localStorage.getItem("twc-test-array"));
 
   const view_all = () => {
     move('/contacts')
   }
+
+  useEffect(() => {
+    if (!array) {
+      move('/login');
+    }
+  }, []);
   return (
     <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
       <div className="h-screen w-screen bg-custom rounded-cust">
@@ -41,7 +49,7 @@ export default function Initial_add_contact() {
                   <input type="radio" name="gender" value="female" className="ml-10 " /> Female
                 </div></div>
 
-              <button className="ml-24 mt-8 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full" onClick={()=> view_all()}>add your contact</button>
+              <button className="ml-24 mt-8 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full" onClick={()=> view_all()}>add your first contact</button>
             </form>
             
           </div>
