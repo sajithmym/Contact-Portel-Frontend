@@ -40,8 +40,8 @@ export default function Add_contact() {
         id: array[1]
       };
 
-      const response = await Request_call(url, data);
-      alert(response.data);
+      await Request_call(url, data);
+      // alert(response.data);
       view_all()
     }
   };
