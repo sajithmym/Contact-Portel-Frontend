@@ -24,7 +24,7 @@ export default function AllContact() {
     const answer = confirm("Are you sure you want to do that?");
 
     if (answer) {
-      axios.post(`http://127.0.0.1:8010/delele`, {
+      axios.post(`http://127.0.0.1:8010/delete`, {
         id: id
       })
         .then(() => {
@@ -46,8 +46,8 @@ export default function AllContact() {
       } else {
         const allRecords = data.map((record, number) => (
           <tr className='mt-5' key={number}>
-            {(record.gender === "Female") && <td className="p-2"><box-icon name='female-sign'></box-icon></td>}
-            {(record.gender === "Male") && <td className="p-2"><box-icon name='male-sign'></box-icon></td>}
+            {(record.gender === "Female") && <td className="p-2"><img className='h-10 w-10' src="/female.png" alt="female" /></td>}
+            {(record.gender === "Male") && <td className="p-2"><img className='h-10 w-10' src="/male.png" alt="male" /></td>}
             <td className="p-2">{record.name}</td>
             <td className="p-2">{record.gender}</td>
             <td className="p-2">{record.email}</td>
