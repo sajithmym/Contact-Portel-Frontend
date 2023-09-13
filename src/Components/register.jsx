@@ -28,7 +28,7 @@ export default function Register() {
       alert('Your password and confirmation password do not match.')
       return 0
     }
-    const url = "http://127.0.0.1:8520/signup";
+    const url = "http://127.0.0.1:8010/reg";
     const data = {
       email: email,
       password: password,

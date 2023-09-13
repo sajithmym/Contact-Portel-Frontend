@@ -18,28 +18,28 @@ export default function Login() {
           <h3 className="text-white text-2xl font-normal">Welcome to our <br /> Contacts portal</h3>
 
 
-          <form class="bg-inherit shadow-md rounded mt-10">
-            <div class="mb-4">
+          <form className="bg-inherit shadow-md rounded mt-10">
+            <div className="mb-4">
 
               <input
-                class="shadow appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-96 rounded-3xl"
+                className="shadow appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-96 rounded-3xl"
                 id="email"
                 type="email"
                 placeholder="Email"
               />
             </div>
-            <div class="mb-6">
+            <div className="mb-6">
 
               <input
-                class="shadow appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-96 rounded-3xl"
+                className="shadow appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-96 rounded-3xl"
                 id="password"
                 type="password"
                 placeholder="Password"
               />
             </div>
-            <div class="flex items-center justify-start">
+            <div className="flex items-center justify-start">
               <button
-                class="mt-5 border border-white  bg-inherit hover:bg-black text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
+                className="mt-5 border border-white  bg-inherit hover:bg-black text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 login
