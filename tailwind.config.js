@@ -11,7 +11,8 @@ export default {
       },
       borderRadius: {
         'right': '0 80% 80% 0', 
-        'cust' : '0 30% 0 30%'
+        'cust' : '0 30% 0 30%',
+        'b_r' : '30px'
       },
       backgroundImage: {
         'custom-bg': "url('/background.jpg')",
@@ -21,7 +22,7 @@ export default {
       },
       colors : {
         'cus' : 'rgb(8, 63, 70)',
-      }
+      },
     },
   },
   plugins: [],
