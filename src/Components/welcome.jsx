@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom"
+import Logout from "./Logout"
 
 export default function Welcome() {
   const navigate_var = useNavigate()
+  const array = JSON.parse(localStorage.getItem("twc-test-array"));
 
   const go_Add_page = () => {
     navigate_var('/contacts/new')
   }
+
+  if (array)
+      if (!(array[0] === 'user'))
+          navigator('/login')
   return (
 
     <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
@@ -29,9 +35,8 @@ export default function Welcome() {
 
         <button onClick={() => go_Add_page()} className="ml-48 mt-16 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add your first contact</button>
         <br />
-        <div className="flex justify-end mt-16">
-          <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i className='bx bx-log-out-circle'></i> Logout </button>
-        </div></div>
+        <Logout/>
+        </div>
     </div >
   )
 }

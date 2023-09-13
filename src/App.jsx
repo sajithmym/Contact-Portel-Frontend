@@ -10,11 +10,13 @@ import All_contact from "./Components/all_contact";
 
 function App() {
 
+  const array = JSON.parse(localStorage.getItem("twc-test-array"));
+
   const ProtectedRoute = ({ children  }) => {
-    if (false) {
-      return <Navigate to='/login' />
-    }
-    return children
+    if (array)
+      if ((array[0] === 'user'))
+          return children
+    return <Navigate to='/login' />
   }
 
   return (
@@ -27,6 +29,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/contacts/new' element={<Initial_add_contact />} />
           <Route path='/contacts' element={<All_contact />} />
+          <Route path='/welcome' element={<Welcome />} />
         </Route>
       </Routes>
     </BrowserRouter>

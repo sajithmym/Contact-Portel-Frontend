@@ -1,12 +1,45 @@
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 export default function Login() {
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const Navigate = useNavigate()
 
-  const go_Register = () =>{
+  const go_Register = () => {
     Navigate('/Register')
   }
+
+  // make axios request 
+  const Request_call = async (url, data) => {
+    const response = await axios.post(url, data);
+    return response;
+  };
+
+  //  log in function
+  const Login = async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const url = "http://127.0.0.1:8010/log";
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    const response = await Request_call(url, data);
+    alert(response.data.msg);
+
+    setEmail('')
+    setPassword('')
+
+    if (response.data.msg === "Success") {
+      localStorage.setItem("twc-test-array", JSON.stringify(response.data.info));
+      Navigate('/welcome')
+    }
+  };
 
 
   return (
@@ -18,7 +51,7 @@ export default function Login() {
           <h3 className="text-white text-2xl font-normal">Welcome to our <br /> Contacts portal</h3>
 
 
-          <form className="bg-inherit shadow-md rounded mt-10">
+          <form className="bg-inherit shadow-md rounded mt-10" onSubmit={Login}>
             <div className="mb-4">
 
               <input
@@ -26,6 +59,9 @@ export default function Login() {
                 id="email"
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-6">
@@ -35,6 +71,9 @@ export default function Login() {
                 id="password"
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="flex items-center justify-start">

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Logout from './Logout';
 
 export default function AllContact() {
   const navigate_var = useNavigate()
@@ -75,9 +76,7 @@ export default function AllContact() {
 
         </div>
 
-        <div className="flex justify-end mt-16">
-          <button className="text-white hover:bg-black px-8 py-2 rounded-full text-xl"> <i className='bx bx-log-out-circle'></i> Logout </button>
-        </div>
+        <Logout/>
 
       </div>
     </div>
