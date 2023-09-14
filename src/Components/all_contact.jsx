@@ -1,19 +1,20 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logout from './Logout';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Logout from './Logout';
 
 export default function AllContact() {
-  const navigate_var = useNavigate()
-  const array = JSON.parse(localStorage.getItem("twc-test-array"));
+  const navigate_var = useNavigate();
+  const array = JSON.parse(localStorage.getItem('twc-test-array'));
 
-  const [code, setCode] = useState(<div></div>)
-  const [popup, setPopup] = useState(false)
-  const [popup_code, setPopup_code] = useState(<div></div>)
+  const [code, setCode] = useState([]);
+  const [popup, setPopup] = useState(false);
+  const [popupCode, setPopupCode] = useState(null);
+  const [edit, setEdit] = useState(null);
 
-  const go_Add_page = () => {
-    navigate_var('/Add')
-  }
+  const goAddPage = () => {
+    navigate_var('/Add');
+  };
 
   useEffect(() => {
     if (!array) {
@@ -22,75 +23,136 @@ export default function AllContact() {
   }, []);
 
   const hidePopup = () => {
-    setPopup(false)
-  }
+    setPopup(false);
+    setPopupCode(null);
+  };
 
-  const Refresh = () => {
-    window.location.href = ''
-  }
+  const refresh = () => {
+    window.location.href = '';
+  };
 
-  const Delete_one = (id) => {
-    axios.post(`http://127.0.0.1:8010/delete`, {
-      id: id
-    })
+  const deleteOne = (id, name) => {
+    axios
+      .post('http://127.0.0.1:8010/delete', {
+        id: id,
+      })
       .then(() => {
-        // window.location.href = ''
-        setPopup_code(
+        setPopupCode(
           <div className="text-xl text-cus font-bold">
-            <center><h1>{`Your contact has been deleted successfully!`}</h1></center>
+            <center>
+              <h1>{`Your contact "${name}" has been deleted successfully!`}</h1>
+            </center>
             <div className="mt-4">
               <center>
-                <button onClick={() => Refresh()} className='text-cus bg-white p-2 rounded-3xl px-4 border-cus border hover:bg-green-100'>Okay</button>
+                <button
+                  onClick={() => refresh()}
+                  className="text-cus bg-white p-2 rounded-3xl px-4 border-cus border hover:bg-green-100"
+                >
+                  Okay
+                </button>
               </center>
             </div>
           </div>
-        )
-      })
-  }
+        );
+        setEdit(null); // Clear the edit state after deletion
+      });
+  };
 
-  let delete_reecord = (id, name) => {
-    setPopup(true)
-    setPopup_code(
+  const deleteRecord = (id, name) => {
+    setPopup(true);
+    setPopupCode(
       <div className="text-xl text-cus font-bold">
-        <center><h1>{`Do you want to delete the contact "${name}"?`}</h1></center>
+        <center>
+          <h1>{`Do you want to delete the contact "${name}"?`}</h1>
+        </center>
         <div className="mt-4">
           <center>
-            <button onClick={() => Delete_one(`${id}`)} className='text-white bg-custom mr-5 p-2 rounded-3xl px-4 hover:bg-black'>Okay</button>
-            <button onClick={() => hidePopup()} className='text-cus bg-white ml-5 p-2 rounded-3xl px-4 border-cus border hover:bg-green-100'>Cancel</button>
+            <button
+              onClick={() => deleteOne(id, name)}
+              className="text-white bg-custom mr-5 p-2 rounded-3xl px-4 hover:bg-black"
+            >
+              Okay
+            </button>
+            <button
+              onClick={() => hidePopup()}
+              className="text-cus bg-white ml-5 p-2 rounded-3xl px-4 border-cus border hover:bg-green-100"
+            >
+              Cancel
+            </button>
           </center>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8010/get/${array[1]}`).then((res) => {
+    axios
+      .get(`http://127.0.0.1:8010/get/${array[1]}`)
+      .then((res) => {
+        const data = res.data.rec;
 
-      let data = res.data.rec;
-
-      if (data.length === 0) {
-        setCode(
-          <div id="nodata">
-            No Record Found
-          </div>)
-      } else {
-        const allRecords = data.map((record, number) => (
-          <tr className='mt-5' key={number}>
-            {(record.gender === "Female") && <td className="p-2"><img className='h-8 w-8' src="/female.png" alt="female" /></td>}
-            {(record.gender === "Male") && <td className="p-2"><img className='h-8 w-8' src="/male.png" alt="male" /></td>}
-            <td className="p-2">{record.name}</td>
-            <td className="p-2">{record.gender}</td>
-            <td className="p-2">{record.email}</td>
-            <td className="p-2">{record.mobile}</td>
-            <td className="p-2 hover:cursor-pointer"><box-icon type='solid' name='pencil'></box-icon></td>
-            <td className="p-2 hover:cursor-pointer" onClick={() => delete_reecord(`${record._id}`, `${record.name}`)}><box-icon type='solid' name='trash'></box-icon></td>
-          </tr>
-        ));
-        setCode(allRecords);
-      }
-    })
-
-  }, [])
+        if (data.length === 0) {
+          setCode(
+            <div id="nodata">
+              No Record Found
+            </div>
+          );
+        } else {
+          const allRecords = data.map((record, number) => (
+            <tr className="mt-5" key={number}>
+              {number != edit ? (
+                <>
+                  {record.gender === 'Female' && (
+                    <td className="p-2">
+                      <img className="h-8 w-8" src="/female.png" alt="female" />
+                    </td>
+                  )}
+                  {record.gender === 'Male' && (
+                    <td className="p-2">
+                      <img className="h-8 w-8" src="/male.png" alt="male" />
+                    </td>
+                  )}
+                  <td className="p-2">{record.name}</td>
+                  <td className="p-2">{record.gender}</td>
+                  <td className="p-2">{record.email}</td>
+                  <td className="p-2">{record.mobile}</td>
+                  <td className="p-2 hover:cursor-pointer" onClick={() => setEdit(number)}>
+                    <box-icon type="solid" name="pencil"></box-icon>
+                  </td>
+                  <td className="p-2 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
+                    <box-icon type="solid" name="trash"></box-icon>
+                  </td>
+                </>
+              ) : (
+                <>
+                  {record.gender === 'Female' && (
+                    <td className="p-2">
+                      <img className="h-8 w-8" src="/female.png" alt="female" />
+                    </td>
+                  )}
+                  {record.gender === 'Male' && (
+                    <td className="p-2">
+                      <img className="h-8 w-8" src="/male.png" alt="male" />
+                    </td>
+                  )}
+                  <td className="p-2" contentEditable='true'>{record.name}</td>
+                  <td className="p-2" contentEditable='true'>{record.gender}</td>
+                  <td className="p-2" contentEditable='true'>{record.email}</td>
+                  <td className="p-2" contentEditable='true'>{record.mobile}</td>
+                  <td className="p-2 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
+                    <box-icon type="solid" name="trash"></box-icon>
+                  </td>
+                </>
+              )}
+            </tr>
+          ));
+          setCode(allRecords);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, [edit]);
 
   return (
     <div>
@@ -108,26 +170,28 @@ export default function AllContact() {
 
           <div className="flex mt-7 ml-52 mr-48">
             <h1 className="text-white text-4xl font-bold">Contacts</h1>
-            <button onClick={() => go_Add_page()} className="ml-auto text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add new contact</button>
+            <button
+              onClick={() => goAddPage()}
+              className="ml-auto text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full"
+            >
+              Add New Contact
+            </button>
           </div>
 
           <div className="mt-5 ml-52 mr-48 bg-white rounded-b_r p-5 h-56 overflow-auto">
-
             <table className="border-collapse w-full">
               <thead>
                 <tr>
                   <td className="p-2 font-medium"></td>
-                  <td className="p-2 font-medium">full Name</td>
-                  <td className="p-2 font-medium">gender</td>
-                  <td className="p-2 font-medium">e-mail</td>
-                  <td className="p-2 font-medium">phone number</td>
+                  <td className="p-2 font-medium">Full Name</td>
+                  <td className="p-2 font-medium">Gender</td>
+                  <td className="p-2 font-medium">E-mail</td>
+                  <td className="p-2 font-medium">Phone Number</td>
                   <td className="p-2 font-medium"></td>
                   <td className="p-2 font-medium"></td>
                 </tr>
               </thead>
-              <tbody>
-                {code}
-              </tbody>
+              <tbody>{code}</tbody>
             </table>
           </div>
           <Logout />
@@ -138,12 +202,10 @@ export default function AllContact() {
         <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
           <div className="absolute inset-0 backdrop-filter backdrop-blur-lg bg-black opacity-80"></div>
           <div className="relative z-10 p-8 bg-white h-1/4 w-7/12 rounded-3xl ">
-            {popup_code}
+            {popupCode}
           </div>
         </div>
       )}
-
-
     </div>
   );
 }
