@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Logout from './Logout';
 
-export default function AllContact() {
-  const navigate_var = useNavigate();
+function AllContact() {
+  const navigate = useNavigate();
   const array = JSON.parse(localStorage.getItem('twc-test-array'));
 
   const [code, setCode] = useState([]);
   const [popup, setPopup] = useState(false);
   const [popupCode, setPopupCode] = useState(null);
   const [edit, setEdit] = useState(null);
+  const [gender, setGender] = useState(null);
 
   const goAddPage = () => {
-    navigate_var('/Add');
+    navigate('/Add');
   };
 
   useEffect(() => {
     if (!array) {
-      navigate_var('/login');
+      navigate('/login');
     }
-  }, []);
+  }, [navigate, array]);
 
   const hidePopup = () => {
     setPopup(false);
@@ -45,7 +46,7 @@ export default function AllContact() {
             <div className="mt-4">
               <center>
                 <button
-                  onClick={() => refresh()}
+                  onClick={refresh}
                   className="text-cus bg-white p-2 rounded-3xl px-4 border-cus border hover:bg-green-100"
                 >
                   Okay
@@ -54,7 +55,10 @@ export default function AllContact() {
             </div>
           </div>
         );
-        setEdit(null); // Clear the edit state after deletion
+        setEdit(null);
+      })
+      .catch((error) => {
+        console.error('Error deleting data:', error);
       });
   };
 
@@ -74,7 +78,7 @@ export default function AllContact() {
               Okay
             </button>
             <button
-              onClick={() => hidePopup()}
+              onClick={hidePopup}
               className="text-cus bg-white ml-5 p-2 rounded-3xl px-4 border-cus border hover:bg-green-100"
             >
               Cancel
@@ -84,6 +88,18 @@ export default function AllContact() {
       </div>
     );
   };
+
+  const toggleGender = () => {
+    if (gender === 'Male') {
+      setGender('Female');
+    } else {
+      setGender('Male');
+    }
+  };
+
+  const Update_Row = (ele) => {
+    console.log(ele);
+  }
 
   useEffect(() => {
     axios
@@ -100,15 +116,15 @@ export default function AllContact() {
         } else {
           const allRecords = data.map((record, number) => (
             <tr className="mt-5" key={number}>
-              {number != edit ? (
+              {number !== edit ? (
                 <>
                   {record.gender === 'Female' && (
-                    <td className="p-2">
+                    <td className="p-1">
                       <img className="h-8 w-8" src="/female.png" alt="female" />
                     </td>
                   )}
                   {record.gender === 'Male' && (
-                    <td className="p-2">
+                    <td className="p-1">
                       <img className="h-8 w-8" src="/male.png" alt="male" />
                     </td>
                   )}
@@ -116,31 +132,32 @@ export default function AllContact() {
                   <td className="p-2">{record.gender}</td>
                   <td className="p-2">{record.email}</td>
                   <td className="p-2">{record.mobile}</td>
-                  <td className="p-2 hover:cursor-pointer" onClick={() => setEdit(number)}>
+                  <td className="p-0 hover:cursor-pointer" onClick={() => { setEdit(number); setGender(record.gender); }}>
                     <box-icon type="solid" name="pencil"></box-icon>
                   </td>
-                  <td className="p-2 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
+                  <td className="p-0 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
                     <box-icon type="solid" name="trash"></box-icon>
                   </td>
                 </>
               ) : (
                 <>
-                  {record.gender === 'Female' && (
-                    <td className="p-2">
+                  {gender === 'Female' && (
+                    <td className="p-0">
                       <img className="h-8 w-8" src="/female.png" alt="female" />
                     </td>
                   )}
-                  {record.gender === 'Male' && (
-                    <td className="p-2">
+                  {gender === 'Male' && (
+                    <td className="p-1">
                       <img className="h-8 w-8" src="/male.png" alt="male" />
                     </td>
                   )}
-                  <td className="p-2" contentEditable='true'>{record.name}</td>
-                  <td className="p-2" contentEditable='true'>{record.gender}</td>
-                  <td className="p-2" contentEditable='true'>{record.email}</td>
-                  <td className="p-2" contentEditable='true'>{record.mobile}</td>
-                  <td className="p-2 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
-                    <box-icon type="solid" name="trash"></box-icon>
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.name}</td>
+                  <td className="p-2 border border-cus bg-green-100" onClick={toggleGender}>{gender} 
+                  <i onClick={toggleGender} className='bx bx-refresh ml-2 text-xl hover:text-red-900 font-bold'></i></td>
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.email}</td>
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.mobile}</td>
+                  <td className="p-1 hover:cursor-pointer" colSpan={2}>
+                    <button className='bg-cus text-white hover:bg-black text-xl p-1 px-2 rounded-full' onClick={() => Update_Row(this)}>save</button>
                   </td>
                 </>
               )}
@@ -152,7 +169,7 @@ export default function AllContact() {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, [edit]);
+  }, [edit,gender]);
 
   return (
     <div>
@@ -168,25 +185,25 @@ export default function AllContact() {
             <div className="text-white ml-28 mt-2 text-xl font-normal">Portal</div>
           </div>
 
-          <div className="flex mt-7 ml-52 mr-48">
+          <div className="flex mt-12 ml-52 mr-48">
             <h1 className="text-white text-4xl font-bold">Contacts</h1>
             <button
-              onClick={() => goAddPage()}
+              onClick={goAddPage}
               className="ml-auto text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full"
             >
               Add New Contact
             </button>
           </div>
 
-          <div className="mt-5 ml-52 mr-48 bg-white rounded-b_r p-5 h-56 overflow-auto">
+          <div className="mt-5 ml-52 mr-48 bg-white rounded-b_r p-5 h-52 overflow-auto">
             <table className="border-collapse w-full">
               <thead>
                 <tr>
                   <td className="p-2 font-medium"></td>
-                  <td className="p-2 font-medium">Full Name</td>
-                  <td className="p-2 font-medium">Gender</td>
-                  <td className="p-2 font-medium">E-mail</td>
-                  <td className="p-2 font-medium">Phone Number</td>
+                  <td className="p-2 font-medium">full Name</td>
+                  <td className="p-2 font-medium">gender</td>
+                  <td className="p-2 font-medium">e-mail</td>
+                  <td className="p-2 font-medium">phone Number</td>
                   <td className="p-2 font-medium"></td>
                   <td className="p-2 font-medium"></td>
                 </tr>
@@ -209,3 +226,5 @@ export default function AllContact() {
     </div>
   );
 }
+
+export default AllContact;

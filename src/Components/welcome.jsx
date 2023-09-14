@@ -43,6 +43,7 @@ export default function Welcome() {
 
         <button onClick={() => go_Add_page()} className="ml-48 mt-16 text-white border border-solid text-xl border-white hover:bg-black px-8 py-2 rounded-full">add your first contact</button>
         <br />
+        <br />
         <Logout />
       </div>
     </div >
