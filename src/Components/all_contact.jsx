@@ -11,11 +11,12 @@ function AllContact() {
   const [popup, setPopup] = useState(false);
   const [popupCode, setPopupCode] = useState(null);
   const [edit, setEdit] = useState(null);
-  const [gender, setGender] = useState(null);
 
+  const [gender, setGender] = useState(null);
   const [Name, setName] = useState("");
   const [Mobile, setMobile] = useState("");
   const [Email, setEmail] = useState("");
+  const [blur, setBlur] = useState(false)
 
   const goAddPage = () => {
     navigate('/Add');
@@ -33,21 +34,46 @@ function AllContact() {
   };
 
   const refresh = () => {
-    window.location.href = '';
+    // window.location.href = '';
+    setPopup(false)
+    setEdit(null)
   };
 
-  const Update = () => {
+  const Update = (contact_id) => {
     //-----------------------------------
     axios.post("http://127.0.0.1:8010/edit", {
-        id: array[1],
-        name: Name,
-        email: Email,
-        mobile: Mobile,
-        gender: gender
+      id: contact_id,
+      name: Name,
+      email: Email,
+      phone: Mobile,
+      gender: gender
     }).then((r) => {
-        window.location.href = ''
+      // console.log(r.data.msg);
+      if (r.data.msg === "Done") {
+        setPopup(true);
+        setPopupCode(
+          <div className="text-xl text-cus font-bold">
+            <center>
+              <h1>{`Your contact has been saved successfully!`}</h1>
+            </center>
+            <div className="mt-4">
+              <center>
+                <button
+                  onClick={refresh}
+                  className="text-white hover:text-cus bg-cus p-2 rounded-3xl px-4 border-cus border hover:bg-green-100"
+                >
+                  Okay
+                </button>
+              </center>
+            </div>
+          </div>
+        );
+      }
+
+      else
+        alert("can't edit Check The Restapi")
     })
-}
+  }
 
   const deleteOne = (id, name) => {
     axios
@@ -114,10 +140,6 @@ function AllContact() {
     }
   };
 
-  const Update_Row = () => {
-    console.log(Name,Email,Mobile,gender);
-  }
-
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:8010/get/${array[1]}`)
@@ -175,30 +197,34 @@ function AllContact() {
                     </td>
                   )}
 
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setName(e.target.value)}>{Name}</td>
-                  <td className="p-2 border border-cus bg-green-100" onClick={toggleGender}>{gender}
-                    <i onClick={toggleGender} className='bx bx-refresh ml-2 text-xl hover:text-red-900 font-bold'></i></td>
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setEmail(e.target.value)}>{Email}</td>
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setMobile(e.target.value)}>{Mobile}</td>
+                  <td className="p-1"><input className='bg-green-100 w-32 p-1 border border-cus pl-2' type="text" value={Name} onChange={(e) => setName(e.target.value)} /> </td>
+                  <td className="p-1" onClick={toggleGender}><input className='bg-green-100 w-16 p-1 border border-cus pl-2' type="text" value={gender} />
+                    <i onClick={toggleGender} className='bx bx-refresh ml-1 text-xl hover:text-red-900 font-bold'></i></td>
+                  <td className="p-1"><input className='bg-green-100 w-32 p-1 border border-cus pl-2' type="text" value={Email} onChange={(e) => setEmail(e.target.value)} /></td>
+                  <td className="p-1"><input className='bg-green-100 w-32 p-1 border border-cus pl-2' type="text" value={Mobile} onChange={(e) => setMobile(e.target.value)} /></td>
                   <td className="p-1 hover:cursor-pointer" colSpan={2}>
-                    <button className='bg-cus text-white hover:bg-black text-xl p-1 px-2 rounded-full' onClick={() => Update_Row()}>save</button>
+                    <button className='bg-cus text-white hover:bg-black text-xl p-1 px-2 rounded-full' onClick={() => Update(record._id)}>save</button>
                   </td>
                 </>
               )}
             </tr>
           ));
           setCode(allRecords);
+          if (popup)
+            setBlur(true)
+          else
+            setBlur(false)
         }
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, [edit, gender]);
+  }, [edit, gender, Name, Email, Mobile, popup, blur]);
 
   return (
     <div>
       <div className="flex bg-custom-bg bg-no-repeat h-screen backdrop-blur-lg overflow-hidden">
-        <div className="w-screen bg-custom rounded-cust">
+        <div className={`w-screen bg-custom rounded-cust ${blur ? 'blur-sm' : ''}`}>
           <div className="ml-24 mt-16">
             <div className="mt-10 ml-28 flex">
               <img className="w-8 h-8 mt-1" src="/public/icon_2.png" alt="icon" />
