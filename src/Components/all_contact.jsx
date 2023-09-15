@@ -13,6 +13,10 @@ function AllContact() {
   const [edit, setEdit] = useState(null);
   const [gender, setGender] = useState(null);
 
+  const [Name, setName] = useState("");
+  const [Mobile, setMobile] = useState("");
+  const [Email, setEmail] = useState("");
+
   const goAddPage = () => {
     navigate('/Add');
   };
@@ -31,6 +35,19 @@ function AllContact() {
   const refresh = () => {
     window.location.href = '';
   };
+
+  const Update = () => {
+    //-----------------------------------
+    axios.post("http://127.0.0.1:8010/edit", {
+        id: array[1],
+        name: Name,
+        email: Email,
+        mobile: Mobile,
+        gender: gender
+    }).then((r) => {
+        window.location.href = ''
+    })
+}
 
   const deleteOne = (id, name) => {
     axios
@@ -97,8 +114,8 @@ function AllContact() {
     }
   };
 
-  const Update_Row = (ele) => {
-    console.log(ele);
+  const Update_Row = () => {
+    console.log(Name,Email,Mobile,gender);
   }
 
   useEffect(() => {
@@ -132,7 +149,13 @@ function AllContact() {
                   <td className="p-2">{record.gender}</td>
                   <td className="p-2">{record.email}</td>
                   <td className="p-2">{record.mobile}</td>
-                  <td className="p-0 hover:cursor-pointer" onClick={() => { setEdit(number); setGender(record.gender); }}>
+                  <td className="p-0 hover:cursor-pointer" onClick={() => {
+                    setEdit(number);
+                    setGender(record.gender);
+                    setName(record.name)
+                    setEmail(record.email)
+                    setMobile(record.mobile)
+                  }}>
                     <box-icon type="solid" name="pencil"></box-icon>
                   </td>
                   <td className="p-0 hover:cursor-pointer" onClick={() => deleteRecord(record._id, record.name)}>
@@ -151,13 +174,14 @@ function AllContact() {
                       <img className="h-8 w-8" src="/male.png" alt="male" />
                     </td>
                   )}
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.name}</td>
-                  <td className="p-2 border border-cus bg-green-100" onClick={toggleGender}>{gender} 
-                  <i onClick={toggleGender} className='bx bx-refresh ml-2 text-xl hover:text-red-900 font-bold'></i></td>
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.email}</td>
-                  <td className="p-2 border border-cus bg-green-100" contentEditable='true'>{record.mobile}</td>
+
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setName(e.target.value)}>{Name}</td>
+                  <td className="p-2 border border-cus bg-green-100" onClick={toggleGender}>{gender}
+                    <i onClick={toggleGender} className='bx bx-refresh ml-2 text-xl hover:text-red-900 font-bold'></i></td>
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setEmail(e.target.value)}>{Email}</td>
+                  <td className="p-2 border border-cus bg-green-100" contentEditable='true' onChange={(e) => setMobile(e.target.value)}>{Mobile}</td>
                   <td className="p-1 hover:cursor-pointer" colSpan={2}>
-                    <button className='bg-cus text-white hover:bg-black text-xl p-1 px-2 rounded-full' onClick={() => Update_Row(this)}>save</button>
+                    <button className='bg-cus text-white hover:bg-black text-xl p-1 px-2 rounded-full' onClick={() => Update_Row()}>save</button>
                   </td>
                 </>
               )}
@@ -169,7 +193,7 @@ function AllContact() {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, [edit,gender]);
+  }, [edit, gender]);
 
   return (
     <div>
