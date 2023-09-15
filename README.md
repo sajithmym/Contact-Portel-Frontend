@@ -5,7 +5,7 @@
 
 * Make sure that you have Node.js and npm installed on your system before running the commands.
 
-* Navigate to the 'frontend' folder and open a command prompt, PowerShell, or terminal in that path.
+* Navigate to the 'twc-test-web' folder and open a command prompt, PowerShell, or terminal in that path.
 	Execute Flowing commend
 		-> npm i
 		-> npm run dev
