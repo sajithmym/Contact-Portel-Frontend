@@ -30,15 +30,15 @@ export default function Login() {
     };
 
     const response = await Request_call(url, data);
-    alert(response.data.msg);
-
-    setEmail('')
-    setPassword('')
-
     if (response.data.msg === "Success") {
       localStorage.setItem("twc-test-array", JSON.stringify(response.data.info));
+      setEmail('')
+      setPassword('')
       Navigate('/welcome')
+    } else {
+      alert(response.data.msg);
     }
+
   };
 
 

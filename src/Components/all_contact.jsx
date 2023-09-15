@@ -37,6 +37,7 @@ function AllContact() {
     // window.location.href = '';
     setPopup(false)
     setEdit(null)
+    setBlur(false)
   };
 
   const Update = (contact_id) => {
