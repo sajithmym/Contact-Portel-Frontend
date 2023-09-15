@@ -1,8 +1,13 @@
-# React + Vite
+# How to run
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* To start, run the 'twc-test-api' backend code initially. 
+    ( https://github.com/sajithmym/twc-test-api )
 
-Currently, two official plugins are available:
+* Make sure that you have Node.js and npm installed on your system before running the commands.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Navigate to the 'frontend' folder and open a command prompt, PowerShell, or terminal in that path.
+	Execute Flowing commend
+		-> npm i
+		-> npm run dev
+
+    open a browser and type url http://localhost:5173/
