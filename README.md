@@ -1,6 +1,6 @@
 # How to run
 
-* To start, run the 'twc-test-api' backend code initially. 
+* To start, run the 'twc-test-api' backend code initially...
     ( https://github.com/sajithmym/twc-test-api )
 
 * Make sure that you have Node.js and npm installed on your system before running the commands.
