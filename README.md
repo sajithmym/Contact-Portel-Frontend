@@ -20,5 +20,4 @@ https://github.com/coolmrcool/Sajith_cool/assets/121724836/bca7cbbe-1a8e-4d8e-89
 ![Screenshot 2023-10-01 130116](https://github.com/coolmrcool/Sajith_cool/assets/121724836/e788bef5-c4c6-4895-82d9-0a2a123105bd)
 ![Screenshot 2023-10-01 130126](https://github.com/coolmrcool/Sajith_cool/assets/121724836/2db841a9-df98-48ae-b805-f0f20aecb5cb)
 ![Screenshot 2023-10-01 125940](https://github.com/coolmrcool/Sajith_cool/assets/121724836/67d241f0-5558-4379-9fb2-d1eb61c0131d)
-![Screenshot 2023-10-01 125954](https://github.com/coolmrcool/Sajith_cool/assets/121724836/f0122ff6-de37-4ebb-988b-692a4b912d1c)
 
