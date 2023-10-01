@@ -28,7 +28,7 @@ export default function Welcome() {
         <div className="ml-24 mt-16">
           <div className="mt-10 ml-28 flex">
             <img className="w-8 h-8 mt-1" src="/public/icon_2.png" alt="icon" />
-            <div className="text-white text-2xl font-bold mb-2">twc</div>
+            <div className="text-white text-2xl font-bold mb-2">SAJITH</div>
           </div>
 
           <div className="text-white ml-28 text-xl font-bold">Contacts</div>

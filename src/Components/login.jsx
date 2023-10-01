@@ -97,7 +97,7 @@ export default function Login() {
       <div className="w-1/2 h-screen">
         <div className="mt-56 ml-28 flex">
           <img className="w-10 h-10 mt-1" src="/public/icon_2.png" alt="icon" />
-          <div className="text-black text-4xl font-bold mb-2">twc</div>
+          <div className="text-black text-4xl font-bold mb-2">SAJITH</div>
         </div>
 
         <h1 className="text-cus ml-28 text-5xl font-bold">Contacts</h1>
