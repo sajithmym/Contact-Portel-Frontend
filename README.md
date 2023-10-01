@@ -14,13 +14,11 @@
 
 https://github.com/coolmrcool/Sajith_cool/assets/121724836/9827d8a9-8b58-4476-9eef-50d07bdd58ae
 
-![Screenshot (360)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/a42155ab-7a1a-47a7-9394-e8ef831985e2)
-![Screenshot (361)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/e53258e3-6326-4633-9590-469dbb929c01)
-![Screenshot (362)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/051c76ee-640d-4c36-8b2d-d4dd00d61620)
-![Screenshot (363)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/20b791bb-9d76-4598-b77e-6635672a9f54)
-![Screenshot (364)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/841d58c7-6be8-460d-9bb5-ed5c4b2a0334)
-![Screenshot (355)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/feb8c053-e197-43a3-ad58-a9ae6389a424)
-![Screenshot (356)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/d8628cb6-2488-44cb-9807-c96dc69cf02c)
-![Screenshot (357)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/698c0193-eae7-42c0-8beb-db66b02a7658)
-![Screenshot (358)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/997e9036-2cfb-44e4-b0eb-38dc76e7e40b)
-![Screenshot (359)](https://github.com/coolmrcool/Sajith_cool/assets/121724836/f930d7d0-644d-450e-b09c-0a60616dfa6e)
+![Screenshot 2023-10-01 130016](https://github.com/coolmrcool/Sajith_cool/assets/121724836/a8380962-3de8-4a01-9fb9-3f58fb0cbb76)
+![Screenshot 2023-10-01 130034](https://github.com/coolmrcool/Sajith_cool/assets/121724836/42973240-b5b0-4ceb-91cd-a373fe6908ab)
+![Screenshot 2023-10-01 130053](https://github.com/coolmrcool/Sajith_cool/assets/121724836/944aa126-5186-4902-b46e-a252b5b59373)
+![Screenshot 2023-10-01 130116](https://github.com/coolmrcool/Sajith_cool/assets/121724836/e788bef5-c4c6-4895-82d9-0a2a123105bd)
+![Screenshot 2023-10-01 130126](https://github.com/coolmrcool/Sajith_cool/assets/121724836/2db841a9-df98-48ae-b805-f0f20aecb5cb)
+![Screenshot 2023-10-01 125940](https://github.com/coolmrcool/Sajith_cool/assets/121724836/67d241f0-5558-4379-9fb2-d1eb61c0131d)
+![Screenshot 2023-10-01 125954](https://github.com/coolmrcool/Sajith_cool/assets/121724836/f0122ff6-de37-4ebb-988b-692a4b912d1c)
+
