@@ -12,7 +12,7 @@
 
     open a browser and type url http://localhost:5173/
 
-https://github.com/coolmrcool/Sajith_cool/assets/121724836/9827d8a9-8b58-4476-9eef-50d07bdd58ae
+https://github.com/coolmrcool/Sajith_cool/assets/121724836/bca7cbbe-1a8e-4d8e-89fe-207efc9ac49a
 
 ![Screenshot 2023-10-01 130016](https://github.com/coolmrcool/Sajith_cool/assets/121724836/a8380962-3de8-4a01-9fb9-3f58fb0cbb76)
 ![Screenshot 2023-10-01 130034](https://github.com/coolmrcool/Sajith_cool/assets/121724836/42973240-b5b0-4ceb-91cd-a373fe6908ab)
