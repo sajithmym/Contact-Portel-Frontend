@@ -56,7 +56,7 @@ export default function Initial_add_contact() {
       <div className="h-screen w-screen bg-custom rounded-cust">
         <div className="ml-24 mt-16">
           <div className="mt-10 ml-28 flex">
-            <img className="w-8 h-8 mt-1" src="/icon_2.png" alt="icon" />
+            <img className="w-8 h-8 mt-1" src="icon_2.png" alt="icon" />
             <div className="text-white text-2xl font-bold mb-2">SAJITH</div>
           </div>
 
