@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { backendurl } from "./static";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export default function Login() {
   const Login = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    const url = "http://127.0.0.1:8010/log";
+    const url = backendurl + "/log";
     const data = {
       email: email,
       password: password,

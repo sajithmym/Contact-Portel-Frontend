@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Logout from "./Logout";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { backendurl } from "./static";
 
 export default function Initial_add_contact() {
   const move = useNavigate();
@@ -30,7 +31,7 @@ export default function Initial_add_contact() {
 
     if (gender === "") alert("pleace select a gender...");
     else {
-      const url = "http://127.0.0.1:8010/create";
+      const url = backendurl + "/create";
       const data = {
         name: Name,
         email: Email,

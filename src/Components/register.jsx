@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { backendurl } from "./static";
 
 export default function Register() {
   const Navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Register() {
       alert("Your password and confirmation password do not match.");
       return 0;
     }
-    const url = "http://127.0.0.1:8010/reg";
+    const url = backendurl + "/reg";
     const data = {
       email: email,
       password: password,

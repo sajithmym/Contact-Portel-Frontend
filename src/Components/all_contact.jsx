@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logout from "./Logout";
+import { backendurl } from "./static";
 
 function AllContact() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ function AllContact() {
   const Update = (contact_id) => {
     //-----------------------------------
     axios
-      .post("http://127.0.0.1:8010/edit", {
+      .post(backendurl + "/edit", {
         id: contact_id,
         name: Name,
         email: Email,
@@ -77,7 +78,7 @@ function AllContact() {
 
   const deleteOne = (id, name) => {
     axios
-      .post("http://127.0.0.1:8010/delete", {
+      .post(backendurl + "/delete", {
         id: id,
       })
       .then(() => {
@@ -142,7 +143,7 @@ function AllContact() {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8010/get/${array[1]}`)
+      .get(`${backendurl}/get/${array[1]}`)
       .then((res) => {
         const data = res.data.rec;
 
