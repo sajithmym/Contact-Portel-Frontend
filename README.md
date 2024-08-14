@@ -1,5 +1,7 @@
 # How to run
 
+* Deploy Link : https://sajithmym-contact-portal.netlify.app/ 
+
 * To start, run the 'twc-test-api' backend code initially...
     ( https://github.com/sajithmym/twc-test-api )
 
